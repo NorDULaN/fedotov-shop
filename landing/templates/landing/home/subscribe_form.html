@@ -1,0 +1,18 @@
+<div class="col-md-6 s-c">
+  <div class="stay">
+    <div class="stay-left">
+          <form method="POST" class="form-inline">{% csrf_token %}
+            <fieldset>
+              <div class="control-group
+                {% if form.email.errors %}has-error{% endif %}">
+                  <label class="control-label">Подписаться на новостную рассылку</label>
+                  <div class="controls">
+                    {{ form.email }}
+                  <button type="submit" class="btn btn-dark">Подписаться</button></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="clearfix"> </div>
+  </div>
+</div>

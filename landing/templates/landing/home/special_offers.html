@@ -1,0 +1,20 @@
+<div class="special">
+	<div class="container">
+		<h3>Особое предложение</h3>
+		<div class="specia-top">
+			<ul class="grid_2">
+        {% for offer in offers %}
+    		<li>
+    				<a href="{{ product.get_absolute_url }}"><img src="{% if offer.image %}{{ offer.image.url }}{% else %}https://commons.wikimedia.org/wiki/File:No_image_available.svg{% endif %}" class="img-responsive" alt=""></a>
+    				<div class="special-info grid_1 simpleCart_shelfItem">
+    					<h5>{{ offer.name }}</h5>
+    					<div class="item_add"><span class="item_price"><h6>ВСЕГО {{ offer.price }}</h6></span></div>
+    					<div class="item_add"><span class="item_price"><a href="{{ product.get_absolute_url }}">Подробнее</a></span></div>
+    				</div>
+    		</li>
+        {% endfor %}
+		<div class="clearfix"> </div>
+	</ul>
+		</div>
+	</div>
+</div>
