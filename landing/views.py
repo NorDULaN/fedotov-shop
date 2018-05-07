@@ -20,7 +20,7 @@ def HomeIndex(request):
     else:
         form = SubscriberForm()
 
-    return render(request, 'landing/home/index.html', {
+    return render(request, 'landing/index.html', {
         'form': form,
         'offers': offers
     })

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница сайта{% endblock %}
+
+
+{% block subscribe_form %}
+<div class="col-md-6 s-c">
+  <div class="stay">
+    <div class="stay-left">
+          <form method="POST" class="form-inline">{% csrf_token %}
+            <fieldset>
+              <div class="control-group
+                {% if form.email.errors %}has-error{% endif %}">
+                  <label class="control-label">Подписаться на новостную рассылку</label>
+                  <div class="controls">
+                    {{ form.email }}
+                  <button type="submit" class="btn btn-dark">Подписаться</button></div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="clearfix"> </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block special_offers %}
+<div class="special">
+	<div class="container">
+		<h3>Скидки</h3>
+		<div class="specia-top">
+			<ul class="grid_2">
+        {% for offer in offers %}
+    		<li>
+    				<a href="{{ product.get_absolute_url }}"><img src="{% if offer.image %}{{ offer.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a>
+    				<div class="special-info grid_1 simpleCart_shelfItem">
+    					<h5>{{ offer.name }}</h5>
+    					<div class="item_add"><span class="item_price"><h6>ВСЕГО ЗА <font color="red">{{ offer.price }}</font></h6></span></div>
+    					<div class="item_add"><span class="item_price"><a href="{{ product.get_absolute_url }}">Подробнее</a></span></div>
+    				</div>
+    		</li>
+				{% empty %}
+				<h5>Сегодня без скидок 😞</h5>
+        {% endfor %}
+		<div class="clearfix"> </div>
+	</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
