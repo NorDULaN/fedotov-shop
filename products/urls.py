@@ -21,4 +21,5 @@ urlpatterns = [
     re_path(r'^$', views.ProductList, name='ProductList'),
     re_path(r'^(?P<category_slug>[-\w]+)/$', views.ProductList, name='ProductListByCategory'),
     re_path(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$', views.ProductDetail, name='ProductDetail'),
+    re_path(r'^category/(?P<hierarchy>.+)/$', views.show_category, name='category'),
 ]
