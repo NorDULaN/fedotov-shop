@@ -1,6 +1,6 @@
 <div class="special">
 	<div class="container">
-		<h3>Особое предложение</h3>
+		<h3>Скидки</h3>
 		<div class="specia-top">
 			<ul class="grid_2">
         {% for offer in offers %}
@@ -12,6 +12,8 @@
     					<div class="item_add"><span class="item_price"><a href="{{ product.get_absolute_url }}">Подробнее</a></span></div>
     				</div>
     		</li>
+				{% empty %}
+				<h5>Сегодня без скидок 😞</h5>
         {% endfor %}
 		<div class="clearfix"> </div>
 	</ul>

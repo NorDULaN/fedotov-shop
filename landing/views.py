@@ -8,19 +8,16 @@ from .forms import SubscriberForm
 def HomeIndex(request):
     offers = Product.objects.filter(available=True)[:4]
     if request.method == 'POST':
-        print('post')
         form = SubscriberForm(request.POST)
         if form.is_valid():
             form_sub = form.cleaned_data
             try:
                 new_sub = Subscriber.objects.get(email=form_sub['email'])
                 form = SubscriberForm()
-
             except Subscriber.DoesNotExist:
                 new_sub = Subscriber.objects.create(email=form_sub['email'])
                 return HttpResponseRedirect('/thanks/')
     else:
-        print('get')
         form = SubscriberForm()
 
     return render(request, 'landing/home/index.html', {
