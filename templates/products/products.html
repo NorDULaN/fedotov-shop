@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} {{ instance.name}} {% endblock %}
+{% block title %} {{ instance.name }} {% endblock %}
 
 {% block subscribe_form %}
 
@@ -8,13 +8,13 @@
 
 {% block special_offers %}
 
-{% if instance.post_set.all %}
+{% if instance.product_set.all %}
 <div class="special">
 	<div class="container">
-		<h3>Товары</h3>
+		<h3>{{ instance.name }}</h3>
 		<div class="specia-top">
 			<ul class="grid_2">
-        {% for i in instance.post_set.all %}
+        {% for i in instance.product_set.all %}
     		<li>
     				<a href="{{ i.slug }}"><img src="{% if i.image %}{{ i.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a>
     				<div class="special-info grid_1 simpleCart_shelfItem">
