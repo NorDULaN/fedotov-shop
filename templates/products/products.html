@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ instance.name}} {% endblock %}
+
+{% block subscribe_form %}
+
+{% endblock %}
+
+{% block special_offers %}
+
+{% if instance.post_set.all %}
+<div class="special">
+	<div class="container">
+		<h3>Товары</h3>
+		<div class="specia-top">
+			<ul class="grid_2">
+        {% for i in instance.post_set.all %}
+    		<li>
+    				<a href="{{ i.slug }}"><img src="{% if i.image %}{{ i.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a>
+    				<div class="special-info grid_1 simpleCart_shelfItem">
+    					<h5>{{ i.name }}</h5>
+    					<div class="item_add"><span class="item_price"><h6>{{ i.price }}</h6></span></div>
+    					<div class="item_add"><span class="item_price"><a href="{{ i.slug }}">Подробнее</a></span></div>
+    				</div>
+    		</li>
+				{% empty %}
+				<h5>Сегодня без скидок 😞</h5>
+        {% endfor %}
+		<div class="clearfix"> </div>
+	</ul>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

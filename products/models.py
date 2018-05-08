@@ -1,70 +1,54 @@
 from django.db import models
+from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
 # Create your models here.
 
-class Category(models.Model):
-    name = models.CharField(max_length=200, db_index=True, verbose_name='Название')
-    slug = models.SlugField() # max_length=200, db_index=True, unique=True
-    parent = models.ForeignKey('self',blank=True, null=True ,related_name='children',on_delete=models.SET_NULL)
+class Category(MPTTModel):
+  name = models.CharField(max_length=50, unique=True)
+  parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children', db_index=True)
+  slug = models.SlugField()
 
-    class Meta:
-        unique_together = ('slug', 'parent',)
-        ordering = ['name']
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+  class MPTTMeta:
+    level_attr = 'mptt_level'
+    order_insertion_by = ['name']
 
-    def __str__(self):
-        full_path = [self.name]
+  class Meta:
+    unique_together = (('parent', 'slug',))
+    verbose_name = 'Категории'
+    verbose_name_plural = 'Категории'
 
-        k = self.parent
+  def get_slug_list(self):
+    try:
+      ancestors = self.get_ancestors(include_self=True)
+    except:
+      ancestors = []
+    else:
+      ancestors = [ i.slug for i in ancestors]
+    slugs = []
+    for i in range(len(ancestors)):
+      slugs.append('/'.join(ancestors[:i+1]))
+    return slugs
 
-        while k is not None:
-            full_path.append(k.name)
-            k = k.parent
-
-        return ' -> '.join(full_path[::-1])
-
-    # def __str__(self):
-    #     return self.name
-
-
-    # def get_absolute_url(self):
-    #     return reverse('products:ProductListByCategory', args=[self.slug])
+  def __str__(self):
+    return self.name
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', verbose_name="Категория", null=True, blank=True, on_delete=models.CASCADE)
+    category = TreeForeignKey('Category',null=True,blank=True,on_delete=models.CASCADE, verbose_name="Категории")
     name = models.CharField(max_length=200, db_index=True, verbose_name="Название")
     slug = models.SlugField(unique=True,max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара")
     description = models.TextField(blank=True, verbose_name="Описание")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     stock = models.PositiveIntegerField(verbose_name="На складе")
-    available = models.BooleanField(default=True, verbose_name="Доступен")
-    created = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
-    updated = models.DateTimeField(auto_now=True, verbose_name='Обновлен')
+    available = models.BooleanField(default=True, verbose_name="Выставлен")
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
 
     class Meta:
         ordering = ['name']
-        index_together = [
-            ['id', 'slug']
-        ]
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
     def __str__(self):
         return self.name
-
-    def get_cat_list(self):
-        k = self.category
-        breadcrumb = ["dummy"]
-        while k is not None:
-            breadcrumb.append(k.slug)
-            k = k.parent
-
-        for i in range(len(breadcrumb)-1):
-            breadcrumb[i] = '/'.join(breadcrumb[-1:i-1:-1])
-        return breadcrumb[-1:0:-1]
-
-    def get_absolute_url(self):
-        return reverse('products:ProductDetail', args=[self.id, self.slug])

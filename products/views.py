@@ -28,17 +28,16 @@ def ProductDetail(request, id, slug):
 
 def show_category(request,hierarchy= None):
     category_slug = hierarchy.split('/')
-    category_queryset = list(Category.objects.all())
-    all_slugs = [ x.slug for x in category_queryset ]
     parent = None
-    for slug in category_slug:
-        if slug in all_slugs:
-            parent = get_object_or_404(Category,slug=slug,parent=parent)
-        else:
-            instance = get_object_or_404(Post, slug=slug)
-            breadcrumbs_link = instance.get_cat_list()
-            category_name = [' '.join(i.split('/')[-1].split('-')) for i in breadcrumbs_link]
-            breadcrumbs = zip(breadcrumbs_link, category_name)
-            return render(request, "postDetail.html", {'instance':instance,'breadcrumbs':breadcrumbs})
+    root = Category.objects.all()
 
-    return render(request,"categories.html",{'post_set':parent.post_set.all(),'sub_categories':parent.children.all()})
+    for slug in category_slug[:-1]:
+        parent = root.get(parent=parent, slug = slug)
+
+    try:
+        instance = Category.objects.get(parent=parent,slug=category_slug[-1])
+    except:
+        instance = get_object_or_404(Product, slug = category_slug[-1])
+        return render(request, "products/productDetail.html", {'instance':instance})
+    else:
+        return render(request, 'products/products.html', {'instance':instance})

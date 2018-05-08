@@ -1,0 +1,8 @@
+{% if  instance.children.all %}
+    <h4>Sub Categories</h4>
+    {% for i in instance.children.all %}
+        <a href="{{ i.slug }}"> {{ i.name }} </a><br>
+    {% endfor %}
+
+    <br><hr>
+{% endif %}
