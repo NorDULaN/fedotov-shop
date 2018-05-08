@@ -1,6 +1,142 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %}Главная страница магазина{% endblock %}
 
-{% block title %}Главная страница сайта{% endblock %}
+{% block menu %}
+<!-- start header menu -->
+<ul class="megamenu skyblue">
+  <li class="active grid"><a class="color1" href="/">Главная</a></li>
+  <li class="grid"><a class="color2" href="/product/category">Список категорий</a>
+    <div class="megapanel">
+      <div class="row">
+        {% for cat in category %}
+        <div class="col1">
+          <div class="h_nav">
+            <h4>{{ cat.name }}</h4>
+            {% if sub_categories %}
+            <ul>
+              {% for i in sub_categories %}
+              <li><a href="{{ i.slug }}">{{ i.name }}</a></li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col2"></div>
+        <div class="col1"></div>
+        <div class="col1"></div>
+        <div class="col1"></div>
+        <div class="col1"></div>
+      </div>
+        </div>
+    </li>
+
+    <li class="grid"><a class="color3" href="index.html">Что-то 1</a></li>
+    <li class="grid"><a class="color4" href="index.html">Что-то 2</a></li>
+    <li class="grid"><a class="color5" href="index.html">Что-то 3</a></li>
+ </ul>
+{% endblock %}
+
+{% block arriv %}
+<div class="arriv">
+	<div class="container">
+		<div class="arriv-top">
+			<div class="col-md-6 arriv-left">
+				<img src="{% static "images/1.jpg" %}" class="img-responsive" alt="">
+				<div class="arriv-info">
+					<h3>NEW ARRIVALS</h3>
+					<p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
+					<div class="crt-btn">
+						<a href="details.html">TAKE A LOOK</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 arriv-right">
+				<img src="{% static "images/2.jpg" %}" class="img-responsive" alt="">
+				<div class="arriv-info">
+					<h3>TUXEDO</h3>
+					<p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
+					<div class="crt-btn">
+						<a href="details.html">SHOP NOW</a>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="arriv-bottm">
+			<div class="col-md-8 arriv-left1">
+				<img src="{% static "images/3.jpg" %}" class="img-responsive" alt="">
+				<div class="arriv-info1">
+					<h3>SWEATER</h3>
+					<p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
+					<div class="crt-btn">
+						<a href="details.html">SHOP NOW</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 arriv-right1">
+				<img src="{% static "images/4.jpg" %}" class="img-responsive" alt="">
+				<div class="arriv-info2">
+					<a href="details.html"><h3>Trekking Shoes<i class="ars"></i></h3></a>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="arriv-las">
+			<div class="col-md-4 arriv-left2">
+				<img src="{% static "images/5.jpg" %}" class="img-responsive" alt="">
+				<div class="arriv-info2">
+					<a href="details.html"><h3>Casual Glasses<i class="ars"></i></h3></a>
+				</div>
+			</div>
+			<div class="col-md-4 arriv-middle">
+				<img src="{% static "images/6.jpg" %}" class="img-responsive" alt="">
+				<div class="arriv-info3">
+					<h3>FRESH LOOK T-SHIRT</h3>
+					<div class="crt-btn">
+						<a href="details.html">SHOP NOW</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 arriv-right2">
+				<img src="{% static "images/7.jpg" %}" class="img-responsive" alt="">
+				<div class="arriv-info2">
+					<a href="details.html"><h3>Elegant Watches<i class="ars"></i></h3></a>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block special_offers %}
+<div class="special">
+	<div class="container">
+		<h3>Скидки</h3>
+		<div class="specia-top">
+			<ul class="grid_2">
+        {% for offer in offers %}
+    		<li>
+    				<a href="{{ offer.slug }}"><img src="{% if offer.image %}{{ offer.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a>
+    				<div class="special-info grid_1 simpleCart_shelfItem">
+    					<h5>{{ offer.name }}</h5>
+    					<div class="item_add"><span class="item_price"><h6>ВСЕГО ЗА <font color="red">{{ offer.price }}</font></h6></span></div>
+    					<div class="item_add"><span class="item_price"><a href="{{ offer.slug }}">Подробнее</a></span></div>
+    				</div>
+    		</li>
+				{% empty %}
+				<h5>Сегодня без скидок 😞</h5>
+        {% endfor %}
+		<div class="clearfix"> </div>
+	</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
 
 {% block subscribe_form %}
 <div class="col-md-6 s-c">
@@ -20,31 +156,5 @@
         </div>
         <div class="clearfix"> </div>
   </div>
-</div>
-{% endblock %}
-
-
-{% block special_offers %}
-<div class="special">
-	<div class="container">
-		<h3>Скидки</h3>
-		<div class="specia-top">
-			<ul class="grid_2">
-        {% for offer in offers %}
-    		<li>
-    				<a href="{{ product.get_absolute_url }}"><img src="{% if offer.image %}{{ offer.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a>
-    				<div class="special-info grid_1 simpleCart_shelfItem">
-    					<h5>{{ offer.name }}</h5>
-    					<div class="item_add"><span class="item_price"><h6>ВСЕГО ЗА <font color="red">{{ offer.price }}</font></h6></span></div>
-    					<div class="item_add"><span class="item_price"><a href="{{ product.get_absolute_url }}">Подробнее</a></span></div>
-    				</div>
-    		</li>
-				{% empty %}
-				<h5>Сегодня без скидок 😞</h5>
-        {% endfor %}
-		<div class="clearfix"> </div>
-	</ul>
-		</div>
-	</div>
 </div>
 {% endblock %}

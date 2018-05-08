@@ -4,7 +4,8 @@ from .models import Category, Product
 
 
 # Страница с товарами
-def ProductList(request, category_slug=None):
+def ProductList(request):
+    root = Category.objects.all()
     category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
@@ -17,22 +18,15 @@ def ProductList(request, category_slug=None):
         'products': products
     })
 
-# Страница товара
-def ProductDetail(request, id, slug):
-    product = get_object_or_404(Product, id=id, slug=slug, available=True)
-    #cart_product_form = CartAddProductForm()
-    return render(request, 'shop/product/detail.html',
-                             {'product': product,
-                              #'cart_product_form': cart_product_form}
-                              })
-
 def show_category(request,hierarchy= None):
     category_slug = hierarchy.split('/')
     parent = None
     root = Category.objects.all()
+    print(root)
 
     for slug in category_slug[:-1]:
         parent = root.get(parent=parent, slug = slug)
+        print(parent)
 
     try:
         instance = Category.objects.get(parent=parent,slug=category_slug[-1])
