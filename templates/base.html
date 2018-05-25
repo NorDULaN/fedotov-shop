@@ -10,24 +10,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>{% block title %}{% endblock %}</title>
-<link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary JavaScript plugins) -->
-<script type='text/javascript' src="{% static "js/jquery-1.11.1.min.js" %}"></script>
-<!-- Custom Theme files -->
-<link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
-<!--//theme-style-->
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
-<!-- start menu -->
+<!-- start CSS <link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css' /> -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' />
 <link href="{% static "css/megamenu.css" %}" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="{% static "js/megamenu.js" %}"></script>
-<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-<script src="{% static "js/menu_jquery.js" %}"></script>
-<script src="{% static "js/simpleCart.min.js" %}"> </script>
+{% block head %}{% endblock %}
+<!-- end CSS -->
 </head>
 <body>
 <!-- header_top -->
@@ -85,13 +80,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="reg"></div>
 			<div class="cart box_1">
 				<a href="checkout.html">
-					<h3> <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> items)<img src="{% static "images/bag.png" %}" alt=""></h3>
+					<h3> <span class="simpleCart_total">Пусто</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> шт.)<img src="{% static "images/bag.png" %}" alt=""></h3>
 				</a>
-				<p><a href="javascript:;" class="simpleCart_empty">(empty card)</a></p>
+				<p><a href="javascript:;" class="simpleCart_empty">(сбросить)</a></p>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="create_btn">
-				<a href="checkout.html">CHECKOUT</a>
+				<a href="checkout.html">КОРЗИНА</a>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -109,30 +104,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 </div>
 </div>
-{% block arriv %} {% endblock %}
-{% block special_offers %} {% endblock special_offers %}
+{% block content %} {% endblock %}
 <div class="foot-top">
 	<div class="container">
-		<div class="col-md-6 s-c">
-			<li>
-				<div class="fooll">
-					<h5>follow us on</h5>
-				</div>
-			</li>
-			<li>
-				<div class="social-ic">
-					<ul>
-						<li><a href="#"><i class="facebok"> </i></a></li>
-						<li><a href="#"><i class="twiter"> </i></a></li>
-						<li><a href="#"><i class="goog"> </i></a></li>
-						<li><a href="#"><i class="be"> </i></a></li>
-						<li><a href="#"><i class="pp"> </i></a></li>
-							<div class="clearfix"></div>
-					</ul>
-				</div>
-			</li>
-				<div class="clearfix"> </div>
-		</div>
     {% block subscribe_form %} {% endblock %}
 			<div class="clearfix"> </div>
 	</div>
@@ -161,19 +135,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<li><a href="buy.html">Payment</a></li>
 		</div>
 		<div class="col-md-5 our-st">
-			<div class="our-left">
+
 				<h4>OUR STORES</h4>
-			</div>
-			<div class="our-left1">
-				<div class="cr_btn">
-					<a href="#">SOLO</a>
-				</div>
-			</div>
-			<div class="our-left1">
-				<div class="cr_btn1">
-					<a href="#">BOGOR</a>
-				</div>
-			</div>
+
+
 			<div class="clearfix"> </div>
 				<li><i class="add"> </i>Jl. Haji Muhidin, Blok G no.69</li>
 				<li><i class="phone"> </i>025-2839341</li>
@@ -184,5 +149,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<p>Copyrights © 2015 Gretong. All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
 	</div>
 </div>
+<!-- start jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static "js/megamenu.js" %}"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<script src="{% static "js/menu_jquery.js" %}"></script>
+<script src="{% static "js/scripts.js" %}"> </script>
+{% block scripts %}{% endblock %}
+<!-- end jQuery -->
 </body>
 </html>
