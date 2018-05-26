@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'mptt',
     'landing',
     'products',
-    # orders
+    'orders',
 ]
 
 MIDDLEWARE = [
