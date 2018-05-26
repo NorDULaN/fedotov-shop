@@ -970,7 +970,7 @@ ul.megamenu.skyblue {
 i.ars {
   width: 35px;
   height: 20px;
-  background: url(../images/arrwss.png)no-repeat 58px -1px ;
+  background: url(../images/arrows.png)no-repeat 58px -1px ;
   display: inline-block;
   padding: 0px 53px;
   vertical-align: middle;
@@ -1082,6 +1082,7 @@ i.goog:hover{
   padding: 2em 0;
   border-bottom: 1px solid #e5e4e2;
   border-top: 1px solid #e5e4e2;
+	background: url(../images/bg-footer.png) repeat;
 }
 .stay form input[type="text"] {
   width: 100%;
@@ -1112,6 +1113,10 @@ i.goog:hover{
   float: left;
   width: 78%;
   margin-right: 0.5%;
+}
+.stay-center {
+  width: 100%;
+	text-align: center;
 }
 .btn-1 {
   float: left;
@@ -2844,7 +2849,7 @@ p.cart a {
   width: 33.33%;
 }
 i.ars {
-  background: url(../images/arrwss.png)no-repeat 16px -1px;
+  background: url(../images/arrows.png)no-repeat 16px -1px;
   padding: 0px 33px;
 }
 .arriv-info2 {
