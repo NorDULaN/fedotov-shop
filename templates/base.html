@@ -80,9 +80,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="reg"></div>
 			<div class="cart box_1">
 				<a href="checkout.html">
-					<h3> <span class="simpleCart_total">Пусто</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> шт.)<img src="{% static "images/bag.png" %}" alt=""></h3>
+					<h3> <span class="simpleCart_total">Пусто</span> (<span id="items_in_cart" class="simpleCart_quantity">
+						{% if items_in_cart %}
+							{{ items_in_cart }}
+						{% else %}
+							0
+						{% endif %}
+					</span> шт.)<img src="{% static "images/bag.png" %}" alt=""></h3>
 				</a>
-				<p><a href="javascript:;" class="simpleCart_empty">(сбросить)</a></p>
+				
 				<div class="clearfix"> </div>
 			</div>
 			<div class="create_btn">
