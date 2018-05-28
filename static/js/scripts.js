@@ -30,7 +30,7 @@ $(document).ready(function(){
         console.log(data.items_in_cart)
         if(data.items_in_cart)
         {
-          $('#items_in_cart').text(data.items_in_cart)
+          $('#items_in_cart').text(" " + data.items_in_cart + " ")
         }
 
       },

@@ -49,50 +49,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="header">
 	<div class="head-t">
 		<div class="logo">
-			<a href="/"><img src="{% static "images/logo.png" %}" class="img-responsive" alt=""/> </a>
+			Место для логотипа
+			<!-- <a href="/"><img src="{% static "images/logo.png" %}" class="img-responsive" alt=""/> </a> -->
 		</div>
 		<!-- start header_right -->
 		<div class="header_right">
 			<div class="rgt-bottom">
-				<div class="log">
-					<div class="login" >
-						<div id="loginContainer"><a href="#" id="loginButton"><span>Личный кабинет</span></a>
-						    <div id="loginBox">
-						        <form id="loginForm">
-						                <fieldset id="body">
-						                	<fieldset>
-						                          <label for="email">Email Address</label>
-						                          <input type="text" name="email" id="email">
-						                    </fieldset>
-						                    <fieldset>
-						                            <label for="password">Password</label>
-						                            <input type="password" name="password" id="password">
-						                     </fieldset>
-						                    <input type="submit" id="login" value="Sign in">
-						                	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
-						            	</fieldset>
-						            <span><a href="#">Forgot your password?</a></span>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="reg"></div>
+			{% include 'sign_form.html' %}
 			<div class="cart box_1">
-				<a href="checkout.html">
-					<h3> <span class="simpleCart_total">Пусто</span> (<span id="items_in_cart" class="simpleCart_quantity">
-						{% if items_in_cart %}
-							{{ items_in_cart }}
+				<a href="#">
+					<h3> <span class="simpleCart_total">
+						{% if items_in_cart_price %}
+							{{ items_in_cart_price }} руб.
+						{% else %}
+							Пусто
+						{% endif %}</span> (<span id="items_in_cart" class="simpleCart_quantity">
+						{% if items_in_cart_count %}
+							{{ items_in_cart_count }}
 						{% else %}
 							0
 						{% endif %}
-					</span> шт.)<img src="{% static "images/bag.png" %}" alt=""></h3>
+					</span> шт. )<img src="{% static "images/bag.png" %}" alt=""></h3>
 				</a>
-				
+
 				<div class="clearfix"> </div>
 			</div>
 			<div class="create_btn">
-				<a href="checkout.html">КОРЗИНА</a>
+				<a href="#">КОРЗИНА</a>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -106,53 +89,62 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="clearfix"> </div>
 	</div>
-	{% block menu %} {% endblock %}
+
+	<!-- start header menu -->
+	<ul class="megamenu skyblue">
+		<li class="active grid"><a class="color1" href="/">Главная</a></li>
+		<li class="grid"><a class="color2" href="/product">Просмотр категорий</a>
+	</ul>
+
 	</div>
 </div>
 </div>
 {% block content %} {% endblock %}
-<div class="foot-top">
+{% if form %}<div class="foot-top">
 	<div class="container">
-    {% block subscribe_form %} {% endblock %}
+
+		<div width="100%">
+		  <div class="stay">
+		    <div class="stay-center">
+		          <form method="POST" class="form-inline">{% csrf_token %}
+		            <fieldset>
+		              <div class="control-group
+		                {% if form.email.errors %}has-error{% endif %}">
+		                  <label class="control-label">Подписаться на новостную рассылку</label>
+		                  <div class="controls">
+		                    {{ form.email }}
+		                  <button type="submit" class="btn btn-dark">Подписаться</button></div>
+		              </div>
+		            </fieldset>
+		          </form>
+		        </div>
+		        <div class="clearfix"> </div>
+		  </div>
+		</div>
+
 			<div class="clearfix"> </div>
 	</div>
 </div>
+{% endif %}
 <div class="footer">
 	<div class="container">
 		<div class="col-md-3 cust">
-			<h4>CUSTOMER CARE</h4>
-				<li><a href="#">Help Center</a></li>
+			<h4>ПОМОЩЬ ПОКУПАТЕЛЮ</h4>
+				<li><a href="#">Горячая линия</a></li>
 				<li><a href="#">FAQ</a></li>
-				<li><a href="buy.html">How To Buy</a></li>
-				<li><a href="#">Delivery</a></li>
-		</div>
-		<div class="col-md-2 abt">
-			<h4>ABOUT US</h4>
-				<li><a href="#">Our Stories</a></li>
-				<li><a href="#">Press</a></li>
-				<li><a href="#">Career</a></li>
-				<li><a href="contact.html">Contact</a></li>
-		</div>
-		<div class="col-md-2 myac">
-			<h4>MY ACCOUNT</h4>
-				<li><a href="register.html">Register</a></li>
-				<li><a href="#">My Cart</a></li>
-				<li><a href="#">Order History</a></li>
-				<li><a href="buy.html">Payment</a></li>
+				<li><a href="#">Как покупать</a></li>
+				<li><a href="#">Доставка</a></li>
 		</div>
 		<div class="col-md-5 our-st">
-
-				<h4>OUR STORES</h4>
-
-
+				<h4>КОНТАКТЫ</h4>
 			<div class="clearfix"> </div>
-				<li><i class="add"> </i>Jl. Haji Muhidin, Blok G no.69</li>
-				<li><i class="phone"> </i>025-2839341</li>
-				<li><a href="mailto:info@example.com"><i class="mail"> </i>info@sitename.com </a></li>
+				<li><i class="add"> </i>Город</li>
+				<li><i class="phone"> </i>555-25-25</li>
+				<li><a href="mailto:nikitafedotov2010@yandex.ru"><i class="mail"> </i>nikitafedotov2010@yandex.ru </a></li>
 
 		</div>
 		<div class="clearfix"> </div>
-			<p>Copyrights © 2015 Gretong. All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+			<p>© 2018</p>
 	</div>
 </div>
 <!-- start jQuery -->

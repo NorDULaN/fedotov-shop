@@ -2,18 +2,6 @@
 {% load static %}
 {% block title %}Главная страница магазина{% endblock %}
 
-{% block menu %}
-<!-- start header menu -->
-<ul class="megamenu skyblue">
-  <li class="active grid"><a class="color1" href="/">Главная</a></li>
-  <li class="grid"><a class="color2" href="/product">Просмотр категорий</a>
-
-    <li class="grid"><a class="color3" href="index.html">Что-то 1</a></li>
-    <li class="grid"><a class="color4" href="index.html">Что-то 2</a></li>
-    <li class="grid"><a class="color5" href="index.html">Что-то 3</a></li>
- </ul>
-{% endblock %}
-
 {% block content %}
 
 <div class="arriv">
@@ -25,7 +13,7 @@
 					<h3>NEW ARRIVALS</h3>
 					<p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
 					<div class="crt-btn">
-						<a href="details.html">TAKE A LOOK</a>
+						<a href="#">TAKE A LOOK</a>
 					</div>
 				</div>
 			</div>
@@ -35,7 +23,7 @@
 					<h3>TUXEDO</h3>
 					<p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
 					<div class="crt-btn">
-						<a href="details.html">SHOP NOW</a>
+						<a href="#">SHOP NOW</a>
 					</div>
 				</div>
 			</div>
@@ -48,14 +36,14 @@
 					<h3>SWEATER</h3>
 					<p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
 					<div class="crt-btn">
-						<a href="details.html">SHOP NOW</a>
+						<a href="#">SHOP NOW</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4 arriv-right1">
 				<img src="{% static "images/4.jpg" %}" class="img-responsive" alt="">
 				<div class="arriv-info2">
-					<a href="details.html"><h3>Trekking Shoes<i class="ars"></i></h3></a>
+					<a href="#"><h3>Trekking Shoes<i class="ars"></i></h3></a>
 				</div>
 			</div>
 			<div class="clearfix"> </div>
@@ -64,7 +52,7 @@
 			<div class="col-md-4 arriv-left2">
 				<img src="{% static "images/5.jpg" %}" class="img-responsive" alt="">
 				<div class="arriv-info2">
-					<a href="details.html"><h3>Casual Glasses<i class="ars"></i></h3></a>
+					<a href="#"><h3>Casual Glasses<i class="ars"></i></h3></a>
 				</div>
 			</div>
 			<div class="col-md-4 arriv-middle">
@@ -72,14 +60,14 @@
 				<div class="arriv-info3">
 					<h3>FRESH LOOK T-SHIRT</h3>
 					<div class="crt-btn">
-						<a href="details.html">SHOP NOW</a>
+						<a href="#">SHOP NOW</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4 arriv-right2">
 				<img src="{% static "images/7.jpg" %}" class="img-responsive" alt="">
 				<div class="arriv-info2">
-					<a href="details.html"><h3>Elegant Watches<i class="ars"></i></h3></a>
+					<a href="#"><h3>Elegant Watches<i class="ars"></i></h3></a>
 				</div>
 			</div>
 			<div class="clearfix"> </div>
@@ -97,7 +85,7 @@
     				<a href="/product/{{ offer.get_absolut_url }}"><img src="{% if offer.image %}{{ offer.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a>
     				<div class="special-info grid_1 simpleCart_shelfItem">
     					<h5>{{ offer.name }}</h5>
-    					<div class="item_add"><span class="item_price"><h6>ВСЕГО ЗА <font color="red">{{ offer.price }}</font></h6></span></div>
+    					<div class="item_add"><span class="item_price"><h6><font color="red">{{ offer.price }} руб.</font></h6></span></div>
     					<div class="item_add"><span class="item_price"><a href="/product/{{ offer.get_absolut_url }}">Подробнее</a></span></div>
     				</div>
     		</li>
@@ -108,26 +96,5 @@
 	</ul>
 		</div>
 	</div>
-</div>
-{% endblock %}
-
-{% block subscribe_form %}
-<div width="100%">
-  <div class="stay">
-    <div class="stay-center">
-          <form method="POST" class="form-inline">{% csrf_token %}
-            <fieldset>
-              <div class="control-group
-                {% if form.email.errors %}has-error{% endif %}">
-                  <label class="control-label">Подписаться на новостную рассылку</label>
-                  <div class="controls">
-                    {{ form.email }}
-                  <button type="submit" class="btn btn-dark">Подписаться</button></div>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-        <div class="clearfix"> </div>
-  </div>
 </div>
 {% endblock %}
