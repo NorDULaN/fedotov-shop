@@ -34,7 +34,7 @@ $(document).ready(function(){
         }
         if(data.items_in_cart_price)
         {
-          $('#items_in_cart_price').text(" " + data.items_in_cart_price + " ")
+          $('#items_in_cart_price').text(data.items_in_cart_price + " руб.")
         }
 
       },
