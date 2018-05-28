@@ -16,22 +16,20 @@
 					<div class="grid images_3_of_2">
 						<ul id="etalage">
 							<li>
-								<a href="#">
-									<img class="etalage_thumb_image" src="{% static "images/d1.jpg" %}" class="img-responsive" />
-									<img class="etalage_source_image" src="{% static "images/d1.jpg" %}" class="img-responsive" title="" />
-								</a>
+								<img class="etalage_thumb_image" src="{{ instance.get_main_image }}" class="img-responsive" />
+								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive" title="" />
 							</li>
 							<li>
-								<img class="etalage_thumb_image" src="{% static "images/d2.jpg" %}" class="img-responsive" />
-								<img class="etalage_source_image" src="{% static "images/d2.jpg" %}" class="img-responsive" title="" />
+								<img class="etalage_thumb_image" src="{{ instance.get_main_image }}" class="img-responsive" />
+								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive" title="" />
 							</li>
 							<li>
-								<img class="etalage_thumb_image" src="{% static "images/d3.jpg" %}" class="img-responsive"  />
-								<img class="etalage_source_image" src="{% static "images/d3.jpg" %}" class="img-responsive"  />
+								<img class="etalage_thumb_image" src="{{ instance.get_main_image }}" class="img-responsive"  />
+								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive"  />
 							</li>
 						    <li>
-								<img class="etalage_thumb_image" src="{% static "images/d4.jpg" %}" class="img-responsive"  />
-								<img class="etalage_source_image" src="{% static "images/d4.jpg" %}" class="img-responsive"  />
+								<img class="etalage_thumb_image" src="{{ instance.get_main_image }}" class="img-responsive"  />
+								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive"  />
 							</li>
 						</ul>
 						 <div class="clearfix"></div>
@@ -43,11 +41,11 @@
 					<span class="code">Product Code: {{ instance.id }}</span>
 						<div class="price">
 							<span class="text">Цена:</span>
-							<span class="price-new">{{ instance.price }} руб.</span><span class="price-old">100.00</span>
-							<span class="price-tax">Ex Tax: 90.00</span><br>
-							<br>
+							<span class="price-new">{{ instance.price }} руб.</span><span class="price-old">{{ instance.price }} руб.</span>
+							<!-- <span class="price-tax">Ex Tax: 90.00</span> -->
+							<br><br>
 						</div>
-					<div class="det_nav1">
+					<!-- <div class="det_nav1">
 						<h4>Select a size :</h4>
 							<div class=" sky-form col col-4">
 								<ul>
@@ -57,7 +55,7 @@
 									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>XL</label></li>
 								</ul>
 							</div>
-					</div><br>
+					</div><br> -->
           <form id="form_buying_product" class="form-inline" action="{% url "ordersAdd" %}">{% csrf_token %}
             <div class="form-group">
                 <input type="number" class="form-control" name="fbp_item_quantity" id="fbp_item_quantity">
@@ -80,8 +78,9 @@
           {% endif %}
 				</div>
 				<div class="single-bottom2">
-					<h6>Related Products</h6>
-						<div class="product">
+					<h6>Похожие товары</h6>
+					<h5>Ничего не найдено 😞</h5>
+						<!-- <div class="product">
 						   <div class="product-desc">
 								<div class="product-img">
 		                           <img src="{% static "images/w8.jpg" %}" class="img-responsive " alt=""/>
@@ -114,7 +113,7 @@
 								<button class="button1"><span>Add to cart</span></button>
 		                  </div>
 						 <div class="clearfix"></div>
-				     </div>
+				     </div> -->
 		   	  </div>
 	       </div>
           {% include 'products/productSideMenu.html' %}

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="arriv">
+<!-- <div class="arriv">
 	<div class="container">
 		<div class="arriv-top">
 			<div class="col-md-6 arriv-left">
@@ -73,7 +73,7 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <div class="special">
 	<div class="container">
@@ -82,7 +82,7 @@
 			<ul class="grid_2">
         {% for offer in offers %}
     		<li>
-    				<a href="/product/{{ offer.get_absolut_url }}"><img src="{% if offer.image %}{{ offer.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a>
+    				<a href="/product/{{ offer.get_absolut_url }}"><img src="{% if offer.get_main_image %}{{ offer.get_main_image }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a>
     				<div class="special-info grid_1 simpleCart_shelfItem">
     					<h5>{{ offer.name }}</h5>
     					<div class="item_add"><span class="item_price"><h6><font color="red">{{ offer.price }} руб.</font></h6></span></div>

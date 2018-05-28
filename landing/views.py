@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from .models import Subscriber
-from products.models import Product
+from products.models import Product, ProductImage
 from .forms import SubscriberForm
 # Create your views here.
 
 def HomeIndex(request):
     offers = Product.objects.filter(available=True)[:4]
+    #images = ProductImage.objects.filter(is_active=True, is_main=True, product__available=True)
+
     if request.method == 'POST':
         form = SubscriberForm(request.POST)
         if form.is_valid():
@@ -22,4 +24,5 @@ def HomeIndex(request):
     return render(request, 'landing/index.html', {
         'offers': offers,
         'form': form,
+        #'images': images,
     })

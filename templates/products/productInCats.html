@@ -11,7 +11,7 @@
 	<!-- start content -->
 	<div class="col-md-9 w_content">
 		<div class="women">
-			<a href="#"><h4>{{ instance.name }} - <span>Всего в категории: {{ instance.count }}</span> </h4></a>
+			<h4>{{ instance.name }} - <span>Всего в категории: {{ instance.get_count }}</span> </h4>
 			<ul class="w_nav">
 						<li>Сортировка : </li>
 		     			<li><a class="active" href="#">Популярное</a></li> |
@@ -30,7 +30,7 @@
       {% for i in instance.get_all_products %}
 		  <div class="grid1_of_4">
 				<div class="content_box"><a href="/product/{{ i.get_absolut_url }}">
-			   	   	 <img src="{% if i.image %}{{ i.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""/>
+			   	   	 <img src="{% if i.get_main_image %}{{ i.get_main_image }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""/>
 				   	  </a>
 				    <h4><a href="/product/{{ i.get_absolut_url }}"> {{ i.name }}</a></h4>
 					 <div class="grid_1 simpleCart_shelfItem">

@@ -12,6 +12,9 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name', )}
 
+    class Meta:
+        model = Category
+
 admin.site.register(Category , MPTTModelAdmin)
 
 # Модель товара
