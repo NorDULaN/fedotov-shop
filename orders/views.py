@@ -9,7 +9,8 @@ def ordersAdd(request):
     data = request.POST
     item_id = data.get("item_id")
     item_quantity = data.get("item_quantity")
-
+    if int(item_quantity) < 1:
+        return JsonResponse(status=400)
     new_product, created = ProductInCart.objects.get_or_create(session_key=session_key, product_id=item_id, defaults={"count":item_quantity})
     if not created:
         new_product.count += int(item_quantity)
