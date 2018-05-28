@@ -27,10 +27,14 @@ $(document).ready(function(){
       cache: true,
       success: function(data){
         console.log("OK");
-        console.log(data.items_in_cart)
-        if(data.items_in_cart)
+        console.log(data.items_in_cart_count)
+        if(data.items_in_cart_count)
         {
-          $('#items_in_cart').text(" " + data.items_in_cart + " ")
+          $('#items_in_cart_count').text(" " + data.items_in_cart_count + " ")
+        }
+        if(data.items_in_cart_price)
+        {
+          $('#items_in_cart_price').text(" " + data.items_in_cart_price + " ")
         }
 
       },

@@ -15,6 +15,14 @@ def ordersAdd(request):
         new_product.count += int(item_quantity)
         new_product.save(force_update=True)
 
-    items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True).count()
-    return_dict["items_in_cart"] = items_in_cart
+    items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True)
+    items_in_cart_price = 0
+    items_in_cart_count = 0
+    for item in items_in_cart:
+        items_in_cart_price += int(item.total_price)
+        items_in_cart_count += item.count
+
+    #items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True).count()
+    return_dict["items_in_cart_price"] = items_in_cart_price
+    return_dict["items_in_cart_count"] = items_in_cart_count
     return JsonResponse(return_dict)

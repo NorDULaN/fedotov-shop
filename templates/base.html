@@ -58,12 +58,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			{% include 'sign_form.html' %}
 			<div class="cart box_1">
 				<a href="#">
-					<h3> <span class="simpleCart_total">
+					<h3> <span class="simpleCart_total" id="items_in_cart_price">
 						{% if items_in_cart_price %}
 							{{ items_in_cart_price }} руб.
 						{% else %}
 							Пусто
-						{% endif %}</span> (<span id="items_in_cart" class="simpleCart_quantity">
+						{% endif %}</span> (<span id="items_in_cart_count" class="simpleCart_quantity">
 						{% if items_in_cart_count %}
 							{{ items_in_cart_count }}
 						{% else %}
