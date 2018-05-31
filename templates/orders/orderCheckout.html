@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Корзина | {{ checkout_count }} шт. {% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="check">
+			 <div class="col-md-3 cart-total">
+			 <a class="continue" href="/">Продолжить покупки</a>
+			 <div class="price-details">
+				 <h3>Детали заказа</h3>
+				 {% for item in checkout %}
+				 <div class="item_{{ forloop.counter }}" id="x_span{{ forloop.counter }}">
+					 <span>{{ item.product.name }} X <b id="item_count{{ forloop.counter }}">{{ item.count }}</b></span>
+					 <span class="total1"><b class="item-solo-price">{{ item.product.price }}</b> руб. за 1 шт.</span>
+					 <span>Скидка</span>
+					 <span class="total1">{% if item.product.discount > 0 %}{{ item.product.discount }}%{% else %}---{% endif %}</span>
+					 <span>Общая стоимость</span>
+					 <span class="total1"><b class="item-total-price" id="item_total_price{{ forloop.counter }}">{{ item.total_price }}</b> руб.</span>
+					 <span><hr></span><span><hr></span>
+				 </div>
+				 {% endfor %}
+				 <span>Всего</span>
+				 <span class="total1">{{ checkout_price }} руб.</span>
+				 <span>Купон</span>
+				 <span class="total1">---</span>
+				 <div class="clearfix"></div>
+			 </div>
+			 <ul class="total_price">
+			   <li class="last_price"> <h4>Стоимость заказа</h4></li>
+			   <li class="last_price"><span id="end_price">{{ checkout_endprice }} руб.</span></li>
+			   <div class="clearfix"></div>
+			 </ul>
+
+
+			 <div class="clearfix"></div>
+			 <a class="order" href="#">Оформить заказ</a>
+			 <div class="total-item">
+				 <!-- <h3>ОПЦИИ</h3> -->
+				 <h4>Скидочный купон</h4>
+				 <a class="cpns" href="#">Активировать купон</a>
+				 <!-- <p><a href="#">Log In</a> to use accounts - linked coupons</p> -->
+			 </div>
+			</div>
+		 <div class="col-md-9 cart-items">
+			 <h1>Товаров в корзине ({{ checkout_count }})</h1>
+			 {% for item in checkout %}
+			 <div class="cart-header{{ forloop.counter }}" id="x_div{{ forloop.counter }}">
+
+				 <div class="cart-sec simpleCart_shelfItem">
+						<div class="cart-item cyc">
+							 <img src="{{ item.product.get_main_image }}" class="img-responsive" alt=""/>
+						</div>
+					   <div class="cart-item-info">
+						<h3><a href="/product/{{ item.product.get_absolut_url }}">{{ item.product.name }}</a><span>Номер товара: <b class="item-id">{{ item.product.id }}</b></span></h3>
+						<ul class="qty">
+							<span class="close2"></span>
+							<li><b class="item-price">{{ item.product.price }}</b> руб.</li>
+							<li><p>Кол-во: <input type="number" class="items-in-stack" value="{{ item.count }}"></p></li>
+							<li>№<b class="item-index">{{ forloop.counter }}</b></li>
+							<!-- <li><p>Кол-во : {{ item.count }}</p></li> -->
+						</ul>
+
+					   </div>
+					   <div class="clearfix"></div>
+
+				  </div>
+			 </div>
+			 {% endfor %}
+			 <div class="delivery">
+			 <span>Доставляется в кратчайший срок от 7 до 14 рабочих дней</span>
+			 <div class="clearfix"></div>
+			 </div>
+		 </div>
+
+
+			<div class="clearfix"> </div>
+	 </div>
+	 </div>
+{% endblock %}

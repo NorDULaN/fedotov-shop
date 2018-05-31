@@ -19,4 +19,8 @@ from . import views
 
 urlpatterns = [
     path('add/', views.ordersAdd, name='ordersAdd'),
+    path('checkout/', views.ordersCheckout, name='ordersCheckout'),
+    path('checkout/form', views.ordersCheckoutForm, name='ordersCheckoutForm'),
+    path('checkout/continue', views.ordersCheckoutContinue, name='ordersCheckoutContinue'),
+    path('checkout/remove', views.ordersCheckoutRemove, name='ordersCheckoutRemove'),
 ]

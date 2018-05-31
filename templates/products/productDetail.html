@@ -42,20 +42,8 @@
 						<div class="price">
 							<span class="text">Цена:</span>
 							<span class="price-new">{{ instance.price }} руб.</span><span class="price-old">{{ instance.price }} руб.</span>
-							<!-- <span class="price-tax">Ex Tax: 90.00</span> -->
 							<br><br>
 						</div>
-					<!-- <div class="det_nav1">
-						<h4>Select a size :</h4>
-							<div class=" sky-form col col-4">
-								<ul>
-									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>L</label></li>
-									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>S</label></li>
-									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>M</label></li>
-									<li><label class="checkbox"><input type="checkbox" name="checkbox"><i></i>XL</label></li>
-								</ul>
-							</div>
-					</div><br> -->
           <form id="form_buying_product" class="form-inline" action="{% url "ordersAdd" %}">{% csrf_token %}
             <div class="form-group">
                 <input type="number" class="form-control" name="fbp_item_quantity" id="fbp_item_quantity">
@@ -65,6 +53,7 @@
                 data-item_id = "{{ instance.id }}"
                 data-item_name = "{{ instance.name }}"
                 data-item_price = "{{ instance.price }}"
+					 value = "1"
                 >Добавить в корзину</button>
             </div>
           </form>
