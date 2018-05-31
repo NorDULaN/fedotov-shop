@@ -19,14 +19,15 @@ admin.site.register(Category , MPTTModelAdmin)
 
 # Модель товара
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'price', 'available', 'created', 'updated']
+    list_display = ['name', 'slug', 'price', 'discount', 'available', 'created', 'updated']
     list_filter = (
         'available',
+        'discount',
         'created',
         'updated',
         ('category', TreeRelatedFieldListFilter),
     )
-    list_editable = ['price', 'available']
+    list_editable = ['price', 'available', 'discount']
     prepopulated_fields = {'slug': ('name', )}
     inlines = [ProductImageInline]
 

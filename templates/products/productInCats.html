@@ -35,7 +35,12 @@
 				    <h4><a href="/product/{{ i.get_absolut_url }}"> {{ i.name }}</a></h4>
 					 <div class="grid_1 simpleCart_shelfItem">
 
-					 <div class="item_add"><span class="item_price">Цена<h6>{{ i.price }} руб.</h6></span></div>
+					 <div class="item_add"><span class="item_price">Цена<h6>
+						 {% if i.discount > 0 %} <b style="color:green;font-size:12pt;">{{ i.get_discount_price }}</b> <s>{{ i.price }}</s>
+						 {% else %}
+						 <b style="font-size:12pt;">{{ i.price }}</b>
+						 {% endif %}
+						 руб.</h6></span></div>
 					<div class="item_add"><span class="item_price"><a href="/product/{{ i.get_absolut_url }}">Подробнее</a></span></div>
 					 </div>
 			   	</div>

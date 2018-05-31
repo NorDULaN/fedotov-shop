@@ -21,7 +21,7 @@ def ordersAdd(request):
     items_in_cart_price = 0
     items_in_cart_count = 0
     for item in items_in_cart:
-        items_in_cart_price += int(item.total_price)
+        items_in_cart_price += float(item.total_price)
         items_in_cart_count += item.count
 
     #items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True).count()
@@ -36,7 +36,7 @@ def ordersCheckout(request):
     return render(request, 'orders/orderCheckout.html', locals())
 
 def ordersCheckoutForm(request):
-    
+
     return JsonResponse(status=400)
 
 def ordersCheckoutContinue(request):
@@ -55,7 +55,7 @@ def ordersCheckoutContinue(request):
     items_in_cart_price = 0
     items_in_cart_count = 0
     for item in items_in_cart:
-        items_in_cart_price += int(item.total_price)
+        items_in_cart_price += float(item.total_price)
         items_in_cart_count += item.count
 
     #items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True).count()
@@ -85,7 +85,7 @@ def ordersCheckoutRemove(request):
     items_in_cart_price = 0
     items_in_cart_count = 0
     for item in items_in_cart:
-        items_in_cart_price += int(item.total_price)
+        items_in_cart_price += float(item.total_price)
         items_in_cart_count += item.count
 
     #items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True).count()

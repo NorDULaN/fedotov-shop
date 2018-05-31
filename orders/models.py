@@ -58,9 +58,13 @@ class ProductInOrder(models.Model):
         verbose_name_plural = "Товары в заказе"
 
     def save(self, *args, **kwargs):
-        price_per_item = self.product.price
+        price_per_item = 0
+        if self.product.discount > 0:
+            ret_price = self.product.price - (self.product.price / 100 * self.product.discount)
+        else:
+            price_per_item = self.product.price
         self.price_per_item = price_per_item
-        self.total_price = self.count * price_per_item
+        self.total_price = int(self.count) * price_per_item
         super(ProductInOrder, self).save(*args, **kwargs)
 
 
@@ -97,7 +101,15 @@ class ProductInCart(models.Model):
         verbose_name_plural = "Товары в корзине"
 
     def save(self, *args, **kwargs):
-        price_per_item = self.product.price
+        price_per_item = 0
+        if self.product.discount > 0:
+            ret_price = self.product.price - (self.product.price / 100 * self.product.discount)
+            price_per_item = ret_price
+        else:
+            price_per_item = self.product.price
+        #price_per_item = self.product.price
         self.price_per_item = price_per_item
+        print(price_per_item)
         self.total_price = int(self.count) * price_per_item
+        print(self.total_price)
         super(ProductInCart, self).save(*args, **kwargs)

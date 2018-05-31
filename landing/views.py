@@ -5,7 +5,7 @@ from .forms import SubscriberForm
 # Create your views here.
 
 def HomeIndex(request):
-    offers = Product.objects.filter(available=True)[:4]
+    offers = Product.objects.filter(available=True, discount__gt=9)[:12]
     #images = ProductImage.objects.filter(is_active=True, is_main=True, product__available=True)
 
     if request.method == 'POST':

@@ -9,7 +9,7 @@ def user_cart_info(request):
 	items_in_cart_price = 0
 	items_in_cart_count = 0
 	for item in items_in_cart:
-		items_in_cart_price += int(item.total_price)
+		items_in_cart_price += float(item.total_price)
 		items_in_cart_count += item.count
 	#items_in_cart_count = items_in_cart.count
 	return locals()

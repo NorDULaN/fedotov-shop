@@ -36,12 +36,17 @@
 				  </div>
 				  <div class="desc1 span_3_of_2">
 					<h3>{{ instance.name }}</h3>
-					<span class="brand">Категория: <a href="#">{{ instance.category }} </a></span>
+					<span class="brand">Категория: <a href="/product/{{ instance.category.get_absolut_url }}">{{ instance.category }} </a></span>
 					<br>
 					<span class="code">Product Code: {{ instance.id }}</span>
 						<div class="price">
 							<span class="text">Цена:</span>
-							<span class="price-new">{{ instance.price }} руб.</span><span class="price-old">{{ instance.price }} руб.</span>
+							<span class="price-new">
+								{% if instance.discount > 0 %}
+								{{ instance.get_discount_price }} руб.</span><span class="price-old">{{ instance.price }} руб.</span>
+								{% else %}
+								<span class="price-new">{{ instance.price }} руб.</span>
+								{% endif %}
 							<br><br>
 						</div>
           <form id="form_buying_product" class="form-inline" action="{% url "ordersAdd" %}">{% csrf_token %}
@@ -52,7 +57,7 @@
               <button type="submit" class="btn btn-success btn-buy" id="fbp_submit"
                 data-item_id = "{{ instance.id }}"
                 data-item_name = "{{ instance.name }}"
-                data-item_price = "{{ instance.price }}"
+                data-item_price = "{% if instance.discount > 0 %} {{ instance.get_discount_price }} {% else %} {{ instance.price }} {% endif %}"
 					 value = "1"
                 >Добавить в корзину</button>
             </div>
@@ -121,10 +126,10 @@
 					thumb_image_height: 400,
 					source_image_width: 900,
 					source_image_height: 1200,
-					show_hint: true,
-					click_callback: function(image_anchor, instance_id){
-						alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
-					}
+					show_hint: true
+					// click_callback: function(image_anchor, instance_id){
+					// 	alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+					// }
 				});
 
 			});

@@ -14,7 +14,7 @@
 				 <div class="item_{{ forloop.counter }}" id="x_span{{ forloop.counter }}">
 					 <span>{{ item.product.name }} X <b id="item_count{{ forloop.counter }}">{{ item.count }}</b></span>
 					 <span class="total1"><b class="item-solo-price">{{ item.product.price }}</b> руб. за 1 шт.</span>
-					 <span>Скидка</span>
+					 <span>Скидка товара</span>
 					 <span class="total1">{% if item.product.discount > 0 %}{{ item.product.discount }}%{% else %}---{% endif %}</span>
 					 <span>Общая стоимость</span>
 					 <span class="total1"><b class="item-total-price" id="item_total_price{{ forloop.counter }}">{{ item.total_price }}</b> руб.</span>
@@ -56,7 +56,7 @@
 						<h3><a href="/product/{{ item.product.get_absolut_url }}">{{ item.product.name }}</a><span>Номер товара: <b class="item-id">{{ item.product.id }}</b></span></h3>
 						<ul class="qty">
 							<span class="close2"></span>
-							<li><b class="item-price">{{ item.product.price }}</b> руб.</li>
+							<li>{% if item.product.discount > 0 %} <b class="item-price-d">{{ item.product.get_discount_price }}</b> <s class="item-price">{{ item.product.price }}</s> {% else %}<b class="item-price">{{ item.product.price }}</b>{% endif %} руб.</li>
 							<li><p>Кол-во: <input type="number" class="items-in-stack" value="{{ item.count }}"></p></li>
 							<li>№<b class="item-index">{{ forloop.counter }}</b></li>
 							<!-- <li><p>Кол-во : {{ item.count }}</p></li> -->

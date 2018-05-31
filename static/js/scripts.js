@@ -66,8 +66,14 @@ $(document).ready(function(){
       var current_index = parseInt(current_div.find('.item-index').text());
       var current_id = parseInt(current_div.find('.item-id').text());
       var current_price = parseFloat(current_div.find('.item-price').text()).toFixed(2);
+      var current_price_d = parseFloat(current_div.find('.item-price-d').text()).toFixed(2);
+      console.log(current_price_d);
+      if(current_price_d>0)
+         $('#item_total_price' + current_index).text(parseFloat(current_count*current_price_d).toFixed(2));
+      else
+         $('#item_total_price' + current_index).text(parseFloat(current_count*current_price).toFixed(2));
       $('#item_count' + current_index).text(current_count);
-      $('#item_total_price' + current_index).text(parseFloat(current_count*current_price).toFixed(2));
+      //$('#item_total_price' + current_index).text(parseFloat(current_count*current_price).toFixed(2));
       var data = {};
       var csrf_token = getCookie('csrftoken');
       data["csrfmiddlewaretoken"] = csrf_token;
