@@ -12,7 +12,9 @@ def ProductList(request):
     })
 
 def show_category(request,hierarchy=None):
-
+    session_key = request.session.session_key
+    if not session_key:
+        request.session.cycle_key()
     category_slug = hierarchy.split('/')
     parent = None
     root = Category.objects.all()
