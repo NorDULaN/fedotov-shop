@@ -5,16 +5,13 @@
 {% if categories %}
 <div class="special">
 	<div class="container">
-		<h3>Список всех категорий</h3>
+		<h3>Список категорий</h3>
 		<div class="specia-top">
 			<ul class="grid_2">
         {% for i in categories %}
     		<li>
-    				<!-- <a href="/product/{{ i.get_absolut_url }}"><img src="{% if i.image %}{{ i.image.url }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive" alt=""></a> -->
     				<div class="special-info grid_1 simpleCart_shelfItem">
-    					<h5>{{ i.name }}</h5>
-    					<!-- div class="item_add"><span class="item_price"><h6>{{ i.price }}</h6></span></div -->
-    					<div class="item_add"><span class="item_price"><a href="/product/{{ i.slug }}">Подробнее</a></span></div>
+    					<div class="item_add"><span class="item_price"><a href="/product/{{ i.slug }}">{{ i.name }}</a></span></div>
     				</div>
     		</li>
 				{% empty %}

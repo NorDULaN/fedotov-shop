@@ -47,39 +47,33 @@ $(document).ready(function(){
    });
 
    // Пересчёт деталей заказа
-   function calcCheckOut()
-   {
-      var total_price = 0;
-      $('.item-total-price').each(function(){
-         total_price = total_price + parseFloat($(this).text());
-      });
+      function calcCheckOut()
+      {
+         var total_price = 0;
+         $('.item-total-price').each(function(){
+            total_price = total_price + parseFloat($(this).text().replace(',','.'));
+         });
 
-      $('#end_price').text(total_price.toFixed(2) + " руб.");
+         $('#end_price').text(total_price.toFixed(2) + " руб.");
    };
 
    // Изменения кол-во товара на странице чекаута
    $(document).on('change', ".items-in-stack", function(){
-      //
       var current_count = $(this).val();
       if(current_count < 1) current_count=1;
       var current_div = $(this).closest('div');
       var current_index = parseInt(current_div.find('.item-index').text());
       var current_id = parseInt(current_div.find('.item-id').text());
-      var current_price = parseFloat(current_div.find('.item-price').text()).toFixed(2);
-      var current_price_d = parseFloat(current_div.find('.item-price-d').text()).toFixed(2);
-      console.log(current_price_d);
+      var current_price = parseFloat(current_div.find('.item-price').text().replace(',','.'));
+      var current_price_d = parseFloat(current_div.find('.item-price-d').text().replace(',','.'));
       if(current_price_d>0)
          $('#item_total_price' + current_index).text(parseFloat(current_count*current_price_d).toFixed(2));
       else
          $('#item_total_price' + current_index).text(parseFloat(current_count*current_price).toFixed(2));
       $('#item_count' + current_index).text(current_count);
-      //$('#item_total_price' + current_index).text(parseFloat(current_count*current_price).toFixed(2));
       var data = {};
       var csrf_token = getCookie('csrftoken');
       data["csrfmiddlewaretoken"] = csrf_token;
-      // var current_div = $(this).closest('div');
-      // var current_id = parseInt(current_div.find('.item-id').text());
-      // var current_count = current_div.find('.items-in-stack').val();
       var order = {
          id: current_id,
          count: current_count
@@ -107,11 +101,9 @@ $(document).ready(function(){
             console.log("ERROR")
          }
       })
-
       calcCheckOut(); // Авто-пересчёт деталей заказа
    });
    calcCheckOut(); // Авто-пересчёт деталей заказа
-
    // Удаление из корзины
    $(document).on('click', ".close2", function(){
       var current_div = $(this).closest('div');
@@ -137,12 +129,15 @@ $(document).ready(function(){
          success: function(data)
          {
             console.log("OK");
-            if(data.items_in_cart_count)
+            if(data.items_in_cart_count || data.items_in_cart_count == 0)
             {
+               console.log(data.items_in_cart_count);
                $('#items_in_cart_count').text(" " + data.items_in_cart_count + " ")
+               $('#tt_count').text(data.items_in_cart_count)
             }
-            if(data.items_in_cart_price)
+            if(data.items_in_cart_price || data.items_in_cart_price == 0)
             {
+               console.log(data.items_in_cart_price);
                $('#items_in_cart_price').text(data.items_in_cart_price + " руб.")
             }
          },

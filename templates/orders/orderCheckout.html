@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
-{% block title %}Корзина | {{ checkout_count }} шт. {% endblock %}
+{% block title %}Корзина | {{ checkout_count }} товара на {{ checkout_endprice }} руб. {% endblock %}
 
 {% block content %}
 <div class="container">
@@ -20,11 +19,11 @@
 					 <span class="total1"><b class="item-total-price" id="item_total_price{{ forloop.counter }}">{{ item.total_price }}</b> руб.</span>
 					 <span><hr></span><span><hr></span>
 				 </div>
-				 {% endfor %}
-				 <span>Всего</span>
-				 <span class="total1">{{ checkout_price }} руб.</span>
-				 <span>Купон</span>
+				 {% empty %}
+				 <span>Общая стоимость</span>
 				 <span class="total1">---</span>
+				 {% endfor %}
+
 				 <div class="clearfix"></div>
 			 </div>
 			 <ul class="total_price">
@@ -36,15 +35,9 @@
 
 			 <div class="clearfix"></div>
 			 <a class="order" href="#">Оформить заказ</a>
-			 <div class="total-item">
-				 <!-- <h3>ОПЦИИ</h3> -->
-				 <h4>Скидочный купон</h4>
-				 <a class="cpns" href="#">Активировать купон</a>
-				 <!-- <p><a href="#">Log In</a> to use accounts - linked coupons</p> -->
-			 </div>
 			</div>
 		 <div class="col-md-9 cart-items">
-			 <h1>Товаров в корзине ({{ checkout_count }})</h1>
+			 <h1>Товаров в корзине (<b id="tt_count">{{ checkout_count }}</b>)</h1>
 			 {% for item in checkout %}
 			 <div class="cart-header{{ forloop.counter }}" id="x_div{{ forloop.counter }}">
 
@@ -67,6 +60,8 @@
 
 				  </div>
 			 </div>
+			 {% empty %}
+			<h5>Корзина пуста 🛒</h5>
 			 {% endfor %}
 			 <div class="delivery">
 			 <span>Доставляется в кратчайший срок от 7 до 14 рабочих дней</span>

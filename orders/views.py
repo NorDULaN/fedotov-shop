@@ -17,7 +17,7 @@ def ordersAdd(request):
         new_product.count += int(item_quantity)
         new_product.save(force_update=True)
 
-    items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True)
+    items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True, order__isnull=True)
     items_in_cart_price = 0
     items_in_cart_count = 0
     for item in items_in_cart:
@@ -33,6 +33,9 @@ def ordersCheckout(request):
     session_key = request.session.session_key
     checkout = ProductInCart.objects.filter(session_key=session_key, is_active=True)
     checkout_count = checkout.count()
+    checkout_endprice = 0
+    for item in checkout:
+        checkout_endprice += float(item.total_price)
     return render(request, 'orders/orderCheckout.html', locals())
 
 def ordersCheckoutForm(request):
@@ -51,7 +54,7 @@ def ordersCheckoutContinue(request):
     if not created:
         new_product.count = int(count)
         new_product.save(force_update=True)
-    items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True)
+    items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True, order__isnull=True)
     items_in_cart_price = 0
     items_in_cart_count = 0
     for item in items_in_cart:
@@ -81,7 +84,7 @@ def ordersCheckoutRemove(request):
             new_product.count = int(count)
             new_product.save(force_update=True)
 
-    items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True)
+    items_in_cart = ProductInCart.objects.filter(session_key=session_key, is_active=True, order__isnull=True)
     items_in_cart_price = 0
     items_in_cart_count = 0
     for item in items_in_cart:

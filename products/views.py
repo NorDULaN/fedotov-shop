@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
 from .models import *
+from django.utils import timezone
 #from cart.forms import CartAddProductForm
 
 
@@ -24,10 +25,14 @@ def show_category(request,hierarchy=None):
         instance = Category.objects.get(parent=parent,slug=category_slug[-1])
     except:
         instance = get_object_or_404(Product, slug = category_slug[-1])
-        #images = ProductImage.objects.filter(pk=instance ,is_active=True)
+        rel_filt = Product.objects.filter(category = instance.category, created__lte=timezone.now()).order_by('-created')
+        relative = rel_filt.exclude(id=instance.id)[:2]
+        i_images = ProductImage.objects.filter(product__id = instance.id, is_active=True, is_main=False)
         return render(request, "products/productDetail.html", {
-            'instance':instance,
+            'instance': instance,
             'categories': categories,
+            'relative': relative,
+            'i_images': i_images,
             })
     else:
         return render(request, 'products/productInCats.html', {

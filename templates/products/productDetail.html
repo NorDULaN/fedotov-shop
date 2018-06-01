@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Магазин | Товар - {{ instance.name }} {% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static "css/etalage.css" %}">
@@ -15,22 +14,25 @@
 				  <div class="single_left">
 					<div class="grid images_3_of_2">
 						<ul id="etalage">
+							{% if instance.get_main_image %}
 							<li>
 								<img class="etalage_thumb_image" src="{{ instance.get_main_image }}" class="img-responsive" />
-								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive" title="" />
+								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive" title="{{ instance.name }}" />
 							</li>
+							{% else %}
 							<li>
-								<img class="etalage_thumb_image" src="{{ instance.get_main_image }}" class="img-responsive" />
-								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive" title="" />
+								<img class="etalage_thumb_image" src="http://lequytong.com/Content/Images/no-image-02.png" class="img-responsive" />
+								<img class="etalage_source_image" src="http://lequytong.com/Content/Images/no-image-02.png" class="img-responsive" title="{{ instance.name }}" />
 							</li>
+							{% endif %}
+							{% for img in i_images %}
 							<li>
-								<img class="etalage_thumb_image" src="{{ instance.get_main_image }}" class="img-responsive"  />
-								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive"  />
+								<img class="etalage_thumb_image" src="{{ img.image.url }}" class="img-responsive" />
+								<img class="etalage_source_image" src="{{ img.image.url }}" class="img-responsive" title="{{ instance.name }}" />
 							</li>
-						    <li>
-								<img class="etalage_thumb_image" src="{{ instance.get_main_image }}" class="img-responsive"  />
-								<img class="etalage_source_image" src="{{ instance.get_main_image }}" class="img-responsive"  />
-							</li>
+							{% empty %}
+
+							{% endfor %}
 						</ul>
 						 <div class="clearfix"></div>
 				  </div>
@@ -73,41 +75,28 @@
 				</div>
 				<div class="single-bottom2">
 					<h6>Похожие товары</h6>
-					<h5>Ничего не найдено 😞</h5>
-						<!-- <div class="product">
+
+					{% for rel in relative %}
+						<div class="product">
 						   <div class="product-desc">
 								<div class="product-img">
-		                           <img src="{% static "images/w8.jpg" %}" class="img-responsive " alt=""/>
+		                           <img src="{% if rel.get_main_image %}{{ rel.get_main_image }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive " alt=""/>
 		                       </div>
 		                       <div class="prod1-desc">
-		                           <h5><a class="product_link" href="#">Excepteur sint</a></h5>
-		                           <p class="product_descr"> Vivamus ante lorem, eleifend nec interdum non, ullamcorper et arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+		                           <h5><a class="product_link" href="/product/{{ rel.get_absolut_url }}">{{ rel.name }}</a></h5>
+		                           <p class="product_descr"> {{ rel.description }}</p>
 							   </div>
 							  <div class="clearfix"></div>
 					      </div>
 						  <div class="product_price">
-								<span class="price-access">$597.51</span>
-								<button class="button1"><span>Add to cart</span></button>
+								<span class="price-access">{% if rel.discount > 0 %}{{ rel.get_discount_price }}{% else %}{{rel.price}}{% endif %} руб.</span>
+								<a href="/product/{{ rel.get_absolut_url }}"><button class="button1"><span>Подробнее</span></button></a>
 		                  </div>
 						 <div class="clearfix"></div>
 				     </div>
-				     <div class="product">
-						   <div class="product-desc">
-								<div class="product-img">
-		                           <img src="{% static "images/w10.jpg" %}" class="img-responsive " alt=""/>
-		                       </div>
-		                       <div class="prod1-desc">
-		                           <h5><a class="product_link" href="#">Excepteur sint</a></h5>
-		                           <p class="product_descr"> Vivamus ante lorem, eleifend nec interdum non, ullamcorper et arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
-							   </div>
-							   <div class="clearfix"></div>
-					      </div>
-						  <div class="product_price">
-								<span class="price-access">$597.51</span>
-								<button class="button1"><span>Add to cart</span></button>
-		                  </div>
-						 <div class="clearfix"></div>
-				     </div> -->
+					  {% empty %}
+					  <h5>Ничего не найдено 😞</h5>
+					  {% endfor %}
 		   	  </div>
 	       </div>
           {% include 'products/productSideMenu.html' %}
