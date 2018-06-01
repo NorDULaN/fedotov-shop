@@ -2001,7 +2001,7 @@ span.brand {
 	padding:5% 0;
 }
 .span_3_of_2 {
-	width:60.3333%;
+	width:30%;
 }
 .desc1 {
 	display: block;
@@ -2039,9 +2039,9 @@ span.actual1 {
 	font-size: 1.2em;
 }
 .images_3_of_2 {
-	width:35.2%;
+	width:65%;
 	float: left;
-	margin-right: 2.6%;
+	margin-right: 5%;
 }
 .single-bottom1 h6, .single-bottom2 h6 {
 	background: #F3F3F3;
