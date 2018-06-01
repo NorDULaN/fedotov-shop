@@ -134,3 +134,13 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@sandbox5aaa583a30b544b8afbe8f4e047f81ac.mailgun.org'
+EMAIL_HOST_PASSWORD = '4bb348202b53ec06d9a48d36c6b9a2ac-b6183ad4-0d817aa6'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = 'postmaster@sandbox5aaa583a30b544b8afbe8f4e047f81ac.mailgun.org'  # для обычных сообщений
+SERVER_EMAIL = 'nikitafedotov2010@yandex.ru'              # для администрации

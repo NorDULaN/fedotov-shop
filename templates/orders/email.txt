@@ -1,0 +1,52 @@
+<html>
+  <head>
+     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+ </head>
+  <body>
+    <h1>Онлайн-магазин - http://yechez.pythonanywhere.com</h1>
+    <p>
+      Номер заказа: #<b>{{ new_order.id }}</b> <br>
+      <span class="secondary">
+        {{ new_order.created }}
+      </span>
+    </p>
+    <h3>Покупатель</h3>
+    <p>
+      ФИО: {{ new_order.customer_name }}<br>
+      Почта: {{ new_order.customer_email }} <br>
+      Телефон: {{ new_order.customer_phone }} <br>
+
+      Адресс: Россия, {{ new_order.customer_region }}, {{ new_order.customer_city }}, {{ new_order.customer_index }} <br>
+      Комментарий заказа: {{ new_order.customer_comment }}
+    </p>
+    <h3>Купленные товары</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Товар</th>
+          <th>Стоймость</th>
+          <th>Количество</th>
+          <th>Всего</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in prod_in_ord %}
+          <tr class="row{% cycle "1" "2" %}">
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.price_per_item }}</td>
+            <td>{{ item.count }}</td>
+            <td>{{ item.total_price }}</td>
+          </tr>
+        {% endfor %}
+        <tr class="total">
+          <td colspan="3">Всего:</td>
+          <td class="num">{{ new_order.total_price }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <span>
+      Статус заказа: {{ new_order.status.name }}
+    </span>
+  </body>
+</html>

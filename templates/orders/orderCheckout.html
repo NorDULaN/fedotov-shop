@@ -6,7 +6,7 @@
 <div class="container">
 	<div class="check">
 			 <div class="col-md-3 cart-total">
-			 <a class="continue" href="/">Продолжить покупки</a>
+			 <a class="continue" href="{% url 'HomeIndex' %}">Продолжить покупки</a>
 			 <div class="price-details">
 				 <h3>Детали заказа</h3>
 				 {% for item in checkout %}
@@ -34,7 +34,7 @@
 
 
 			 <div class="clearfix"></div>
-			 <a class="order" href="#">Оформить заказ</a>
+			 <a class="order" href="{% url 'ordersCheckoutForm' %}">Оформить заказ</a>
 			</div>
 		 <div class="col-md-9 cart-items">
 			 <h1>Товаров в корзине (<b id="tt_count">{{ checkout_count }}</b>)</h1>

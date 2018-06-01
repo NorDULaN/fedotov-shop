@@ -8,7 +8,8 @@ class ProductInOrderInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in Order._meta.fields]
+    list_display = ['id', 'customer_name', 'customer_email', 'customer_phone',
+    'customer_comment', 'status', 'total_price', 'created']
     inlines = [ProductInOrderInline]
     class Meta:
         model = Order

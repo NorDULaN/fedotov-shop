@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Оформление заказа | {{ checkout_count }} товара на {{ checkout_endprice }} руб. {% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="check">
+			 <div class="col-md-3 cart-total">
+			 <a class="continue" href="{% url 'ordersCheckout' %}">Корзина</a>
+			 <div class="price-details">
+				 <h3>Детали заказа</h3>
+				 {% for item in checkout %}
+				 <div class="item" id="x_span">
+					 <span>{{ item.product.name }} X <b>{{ item.count }}</b></span>
+					 <span class="total1"><b>{{ item.product.price }}</b> руб. за 1 шт.</span>
+					 <span>Скидка товара</span>
+					 <span class="total1">{% if item.product.discount > 0 %}{{ item.product.discount }}%{% else %}---{% endif %}</span>
+					 <span>Общая стоимость</span>
+					 <span class="total1"><b>{{ item.total_price }}</b> руб.</span>
+					 <span><hr></span><span><hr></span>
+				 </div>
+				 {% empty %}
+				 <span>Общая стоимость</span>
+				 <span class="total1">---</span>
+				 {% endfor %}
+
+				 <div class="clearfix"></div>
+			 </div>
+			 <ul class="total_price">
+			   <li class="last_price"> <h4>Стоимость заказа</h4></li>
+			   <li class="last_price"><span>{{ checkout_endprice }} руб.</span></li>
+			   <div class="clearfix"></div>
+			 </ul>
+
+
+			 <div class="clearfix"></div>
+			</div>
+		 <div class="col-md-9 cart-items">
+			 <h1>Оформление заказа</h1>
+			 <form class="order-form" action="{% url 'ordersCheckoutForm' %}" method="post">
+		      {{ form.as_p }}
+		      {% csrf_token %}
+				<input class="order" type="submit" value="Оформить заказ">
+				<div class="clearfix"></div>
+				</div>
+		    </form>
+		 </div>
+			<div class="clearfix"> </div>
+	 </div>
+	 </div>
+{% endblock %}

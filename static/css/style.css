@@ -202,6 +202,21 @@ a.order {
 a.order:hover{
 	background:#615c85;
 }
+.order {
+  background:#00405d;
+  padding: 10px 20px;
+
+  font-size: 1em;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  font-weight: 600;
+  text-align: center;
+  margin:3em 0;
+}
+.order:hover{
+	background:#615c85;
+}
 .total-item,.cart-items{
 	margin-top:0em;
 	padding-bottom:2em;

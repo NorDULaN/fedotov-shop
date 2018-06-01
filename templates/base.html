@@ -49,15 +49,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="header">
 	<div class="head-t">
 		<div class="logo">
-			<a href="/">Место для логотипа</a>
+			<a href="{% url 'HomeIndex' %}">Место для логотипа</a>
 			<!-- <a href="/"><img src="{% static "images/logo.png" %}" class="img-responsive" alt=""/> </a> -->
 		</div>
 		<!-- start header_right -->
 		<div class="header_right">
 			<div class="rgt-bottom">
-			{% include 'sign_form.html' %}
 			<div class="cart box_1">
-				<a href="#">
+				<a href="{% url 'ordersCheckout' %}">
 					<h3> <span class="simpleCart_total" id="items_in_cart_price">
 						{% if items_in_cart_price %}
 							{{ items_in_cart_price }} руб.
@@ -75,7 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="clearfix"> </div>
 			</div>
 			<div class="create_btn">
-				<a href="/order/checkout">КОРЗИНА</a>
+				<a href="{% url 'ordersCheckout' %}">КОРЗИНА</a>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -92,8 +91,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	<!-- start header menu -->
 	<ul class="megamenu skyblue">
-		<li class="active grid"><a class="color1" href="/">Главная</a></li>
-		<li class="grid"><a class="color2" href="/product">Просмотр категорий</a>
+		<li class="active grid"><a class="color1" href="{% url 'HomeIndex' %}">Главная</a></li>
+		<li class="grid"><a class="color2" href="{% url 'ProductList' %}">Просмотр категорий</a>
 	</ul>
 
 	</div>
