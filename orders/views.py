@@ -49,7 +49,9 @@ def ordersCheckoutForm(request):
     checkout_endprice = 0
     for item in checkout:
         checkout_endprice += float(item.total_price)
-
+    if checkout_count < 1:
+        return render(request, 'orders/orderCheckout.html', locals())
+        
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -76,7 +78,7 @@ def ordersCheckoutForm(request):
             send_mail(
                 subject,
                 msg_plain,
-                'postmaster@sandbox5aaa583a30b544b8afbe8f4e047f81ac.mailgun.org',
+                'yechezlaip@gmail.com',
                 [new_order.customer_email],
                 html_message=msg_html,
             )
