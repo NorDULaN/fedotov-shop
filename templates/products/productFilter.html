@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Магазин | Категория - {{ instance.name }} {% endblock %}
+{% block title %}Магазин | Все товары {% endblock %}
 
 
 {% block content %}
@@ -11,22 +11,22 @@
 	<!-- start content -->
 	<div class="col-md-9 w_content">
 		<div class="women">
-			<h4>{{ instance.name }} - <span>Всего в категории: {{ instance.get_count }}</span> </h4>
+			<h4><span>Всего : {{ product_count }}</span> </h4>
 			<ul class="w_nav">
 						<li>Сортировка : </li>
-		     			<li><a class="active" href="#">Новое </a></li> |
-		     			<li><a href="#">Скидка</a></li> |
+		     			<li><a href="{% url 'ProductFilter' %}">Старое </a></li> |
+                  <li><a href="{% url 'ProductFilter' %}?date=new">Новое </a></li> |
+		     			<li><a href="{% url 'ProductFilter' %}?discount=discount">Скидка </a></li> |
                   <li>Цена : </li>
-                  <li><a href="#">Низкая </a></li> |
-                  <li><a href="#">Высокая </a></li> |
-		     			<li><a href="#">Сбросить</a></li>
+                  <li><a href="{% url 'ProductFilter' %}?price=low">Низкая </a></li> |
+                  <li><a href="{% url 'ProductFilter' %}?price=high">Высокая </a></li>
 		     			<div class="clear"></div>
 		     </ul>
 		     <div class="clearfix"></div>
 		</div>
 		<!-- grids_of_4 -->
 		<div class="grids_of_4">
-      {% for i in instance.get_all_products %}
+      {% for i in product %}
 		  <div class="grid1_of_4">
 				<div class="content_box"><a href="/product/{{ i.get_absolut_url }}">
 			   	   	 <img src="{% if i.get_main_image %}{{ i.get_main_image }}{% else %}{% static "images/no-img.png" %}{% endif %}" class="img-responsive" alt=""/>

@@ -1,10 +1,6 @@
 <html>
-  <head>
-     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
- </head>
   <body>
-    <h1>Онлайн-магазин - http://yechez.pythonanywhere.com</h1>
+    <h1>Онлайн-магазин "FEDOTOV-SHOP" - http://yechez.pythonanywhere.com</h1>
     <p>
       Номер заказа: #<b>{{ new_order.id }}</b> <br>
       <span class="secondary">
@@ -46,7 +42,10 @@
       </tbody>
     </table>
     <span>
-      Статус заказа: {{ new_order.status.name }}
+      Статус заказа: {{ new_order.status.name }}<br>
+      Скоро с вами свяжется наш оператор для уточнения деталей<br>
+      Если хотите изменить или отменить заказ то свяжитесь с оператором<br>
+      Телефон центра: 8-800-555-55-55
     </span>
   </body>
 </html>

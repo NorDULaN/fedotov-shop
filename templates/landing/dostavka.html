@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Главная страница магазина{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<div class="main">
+<div class="contact">
+<div class="contact_info">
+<h2>Сборка и доставка</h2>
+<table class="dostavka" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td class="td_1"><p>ДОСТАВКА</p>
+	<img src="https://www.shatura.com/images/dostavka.jpg"></td>
+    <td class="td_2"> <p><span>Стоимость доставки мебели со склада МК "FEDOTOV-SHOP"</span></p>
+
+        <p>Для заказов оформленных в фирменных магазинах "FEDOTOV-SHOP" и оформленных в нашем интернет-магазине</p>
+    <style>
+.moscow_trf td {
+	padding: 5px;
+	border: 1px solid #DDDDDD;
+	text-align:center;
+}
+.moscow_trf th {
+	padding: 7px;
+	border: 1px solid #DDDDDD;
+	text-align:center;
+}
+</style>
+
+        <table class="moscow_trf" width="100%">
+  <tbody><tr>
+    <th rowspan="2">№ пп</th>
+    <th colspan="2">Вес заказа, кг.</th>
+     <th rowspan="2">Тариф на доставку при заказе сборки</th>
+    <th rowspan="2">Тариф на доставку при отсутствии сборки </th>
+    <th rowspan="2">Доп тариф за пределы города (за 1 км от МКАД) </th>
+  </tr>
+  <tr>
+    <th>Свыше</th>
+   <th>До</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>-</td>
+    <td>30 </td>
+    <td>400</td>
+    <td>480</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>30 </td>
+    <td>100</td>
+    <td>600</td>
+    <td>720</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>100</td>
+    <td>200</td>
+    <td>800</td>
+    <td>960</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>200</td>
+    <td>300</td>
+    <td>990</td>
+    <td>1188</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>300</td>
+    <td>500</td>
+    <td>1200</td>
+    <td>1440</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>500</td>
+    <td>750</td>
+    <td>1400</td>
+    <td>1680</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>750</td>
+    <td>1000</td>
+    <td>1600</td>
+    <td>1920</td>
+    <td>27</td>
+  </tr>
+    <tr>
+    <td>8</td>
+    <td>1000</td>
+    <td>-</td>
+    <td>1800</td>
+    <td>2160</td>
+    <td>27</td>
+  </tr>
+  </tbody></table>
+ <p style="font-size: 16px; color: #ff0000; text-align: center;">Самовывоз осуществляется только из пункта выдачи товара на складе.</p>
+
+
+    </td>
+  </tr>
+  <tr>
+    <td class="td_1"><p>СБОРКА</p>
+	<img src="https://www.shatura.com/images/sborka.jpg"></td>
+    <td class="td_2"><p><span>Стоимость сборки мебели у клиентов</span></p>
+    <p><span>Бытовая мебель:</span></p>
+	<p><b>Бытовая мебель</b>: 6 %, но не менее 1200 руб.
+      <br>Входят все услуги по сборке стандартной бытовой мебели.</p>
+ <p><span>Мягкая мебель:</span></p>
+   <p><strong>Стоимость сборки мягкой мебели:</strong> 700 руб.<br>
+За одну единицу мягкой мебели (дивана).</p>
+ <p>Встройка без подключения одной единицы бытовой техники: 1000 руб.</p>
+<p><strong>Выезд сборщика или замерщика за пределы города:</strong> 25 руб./км.<br>
+ Считается каждый километр от города.</p>
+ </td>
+  </tr>
+</tbody></table>
+<br><i>* текст взят с сайта https://www.shatura.com/delivery/ и используется для личного ознакомления</i>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+{% endblock %}

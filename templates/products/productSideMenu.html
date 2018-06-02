@@ -1,11 +1,12 @@
-{% load namify %}
 {% load mptt_tags %}
 
 <div class="col-md-3 s-d">
   <div class="w_sidebar">
-   <!-- <div class="w_nav1"> -->
       <h4>Категории</h4>
       <ul>
+         <li>
+            <a href="{% url 'ProductFilter' %}">Все</a>
+         </li>
          {% recursetree categories %}
              <li>
                  <a href="/product/{{ node.get_absolut_url }}">{{ node.name }} ({{ node.get_count }})</a>
@@ -17,21 +18,5 @@
              </li>
          {% endrecursetree %}
       </ul>
-      <!-- <ul class="list-group">
-         {% recursetree categories %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <a href="/product/{{ node.get_absolut_url }}">{{ node.name }}</a>
-          <span class="badge badge-primary badge-pill">{{ node.get_count }}</span>
-          {% if not node.is_leaf_node %}
-             <ul class="children">
-                  {{ children }}
-             </ul>
-          {% endif %}
-
-        </li>
-        {% endrecursetree %}
-      </ul> -->
-
-   <!-- </div> -->
 </div>
 </div>

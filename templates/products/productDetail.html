@@ -21,8 +21,8 @@
 							</li>
 							{% else %}
 							<li>
-								<img class="etalage_thumb_image" src="http://lequytong.com/Content/Images/no-image-02.png" class="img-responsive" />
-								<img class="etalage_source_image" src="http://lequytong.com/Content/Images/no-image-02.png" class="img-responsive" title="{{ instance.name }}" />
+								<img class="etalage_thumb_image" src="{% static "images/no-img.png" %}" class="img-responsive" />
+								<img class="etalage_source_image" src="{% static "images/no-img.png" %}" class="img-responsive" title="{{ instance.name }}" />
 							</li>
 							{% endif %}
 							{% for img in i_images %}
@@ -80,7 +80,7 @@
 						<div class="product">
 						   <div class="product-desc">
 								<div class="product-img">
-		                           <img src="{% if rel.get_main_image %}{{ rel.get_main_image }}{% else %}http://lequytong.com/Content/Images/no-image-02.png{% endif %}" class="img-responsive " alt=""/>
+		                           <img src="{% if rel.get_main_image %}{{ rel.get_main_image }}{% else %}{% static "images/no-img.png" %}{% endif %}" class="img-responsive " alt=""/>
 		                       </div>
 		                       <div class="prod1-desc">
 		                           <h5><a class="product_link" href="/product/{{ rel.get_absolut_url }}">{{ rel.name }}</a></h5>
