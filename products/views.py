@@ -33,6 +33,8 @@ def ProductFilter(request):
     discount = request.GET.get("discount")
     if date == 'new':
         product = product.filter(created__lte=timezone.now()).order_by('-created')
+    if date == 'old':
+        product = product.filter(created__lte=timezone.now()).order_by('created')
     if discount == 'discount':
         product = product.filter(discount__gt=0)
     if price == 'low':

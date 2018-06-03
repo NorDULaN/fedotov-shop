@@ -51,7 +51,7 @@ def ordersCheckoutForm(request):
         checkout_endprice += float(item.total_price)
     if checkout_count < 1:
         return render(request, 'orders/orderCheckout.html', locals())
-        
+
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():

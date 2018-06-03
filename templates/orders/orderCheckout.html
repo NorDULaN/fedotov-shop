@@ -50,7 +50,7 @@
 						<ul class="qty">
 							<span class="close2"></span>
 							<li>{% if item.product.discount > 0 %} <b class="item-price-d">{{ item.product.get_discount_price }}</b> <s class="item-price">{{ item.product.price }}</s> {% else %}<b class="item-price">{{ item.product.price }}</b>{% endif %} руб.</li>
-							<li><p>Кол-во: <input type="number" class="items-in-stack" value="{{ item.count }}"></p></li>
+							<li><p>Кол-во: <input type="number" class="items-in-stack" value="{{ item.count }}" step="1" min="1" max="10000" id="fbp_submit"></p></li>
 							<li>№<b class="item-index">{{ forloop.counter }}</b></li>
 							<!-- <li><p>Кол-во : {{ item.count }}</p></li> -->
 						</ul>

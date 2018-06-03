@@ -14,7 +14,7 @@
 			<h4><span>Всего : {{ product_count }}</span> </h4>
 			<ul class="w_nav">
 						<li>Сортировка : </li>
-		     			<li><a href="{% url 'ProductFilter' %}">Старое </a></li> |
+		     			<li><a href="{% url 'ProductFilter' %}?date=old">Старое </a></li> |
                   <li><a href="{% url 'ProductFilter' %}?date=new">Новое </a></li> |
 		     			<li><a href="{% url 'ProductFilter' %}?discount=discount">Скидка </a></li> |
                   <li>Цена : </li>
