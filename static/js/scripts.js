@@ -24,7 +24,7 @@ $(document).ready(function(){
             }
             if(data.items_in_cart_price)
             {
-               $('#items_in_cart_price').text(parseFloat(data.items_in_cart_price.replace(',','.')).toFixed(2) + " руб.")
+               $('#items_in_cart_price').text(data.items_in_cart_price + " руб.")
             }
          },
          error: function()
@@ -93,7 +93,7 @@ $(document).ready(function(){
             }
             if(data.items_in_cart_price)
             {
-               $('#items_in_cart_price').text(parseFloat(data.items_in_cart_price.replace(',','.')).toFixed(2) + " руб.")
+               $('#items_in_cart_price').text(data.items_in_cart_price + " руб.")
             }
          },
          error: function()
@@ -138,7 +138,7 @@ $(document).ready(function(){
             if(data.items_in_cart_price || data.items_in_cart_price == 0)
             {
                //console.log(data.items_in_cart_price);
-               $('#items_in_cart_price').text(parseFloat(data.items_in_cart_price.replace(',','.')).toFixed(2) + " руб.")
+               $('#items_in_cart_price').text(data.items_in_cart_price + " руб.")
             }
          },
          error: function()
