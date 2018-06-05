@@ -84,7 +84,7 @@
 		                       </div>
 		                       <div class="prod1-desc">
 		                           <h5><a class="product_link" href="/product/{{ rel.get_absolut_url }}">{{ rel.name }}</a></h5>
-		                           <p class="product_descr"> {{ rel.description }}</p>
+		                           <p class="product_descr"> {{ rel.description|truncatechars:50 }}</p>
 							   </div>
 							  <div class="clearfix"></div>
 					      </div>

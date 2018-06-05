@@ -1798,8 +1798,10 @@ list-style: none;
 }
 .grid1_of_4{
 	float: left;
-	width: 23.22222%;
-	margin-left: 2.33333%;
+	width: 191.5px;
+	height: 300px;
+	margin-top: 20px;
+	margin-left: 10px;
 	text-align:center;
 }
 .grid1_of_4:first-child{

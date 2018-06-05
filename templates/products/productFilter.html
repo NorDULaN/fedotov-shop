@@ -29,7 +29,7 @@
       {% for i in product %}
 		  <div class="grid1_of_4">
 				<div class="content_box"><a href="/product/{{ i.get_absolut_url }}">
-			   	   	 <img src="{% if i.get_main_image %}{{ i.get_main_image }}{% else %}{% static "images/no-img.png" %}{% endif %}" class="img-responsive" alt=""/>
+			   	   	 <img src="{% if i.get_main_image %}{{ i.get_main_image }}{% else %}{% static "images/no-img.png" %}{% endif %}" style="display:block;height:150px;width:191px;" alt=""/>
 				   	  </a>
 				    <h4><a href="/product/{{ i.get_absolut_url }}"> {{ i.name }}</a></h4>
 					 <div class="grid_1 simpleCart_shelfItem">
