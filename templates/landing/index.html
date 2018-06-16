@@ -11,7 +11,7 @@
 			<ul class="grid_2">
         {% for offer in offers %}
     		<li>
-    				<a href="/product/{{ offer.get_absolut_url }}"><img src="{% if offer.get_main_image %}{{ offer.get_main_image }}{% else %}{% static "images/no-img.png" %}{% endif %}" style="display:block;margin-top:50px;height:167px;width:262.2px;" alt=""></a>
+    				<a href="/product/{{ offer.get_absolut_url }}"><img src="{% if offer.get_main_image %}{{ offer.get_main_image }}{% else %}{% static "images/no-img.png" %}{% endif %}" style="display:block;margin-top:50px;height:167px;max-width:262.2px;width:100%;" alt=""></a>
     				<div class="special-info grid_1 simpleCart_shelfItem">
     					<h5>{{ offer.name }}</h5>
     					<div class="item_add"><span class="item_price"><h6><font color="red">{% if offer.discount > 0 %} {{ offer.get_discount_price }} <s><font color="black">{{ offer.price }}</font></s>
@@ -45,7 +45,7 @@
 			<ul class="grid_2">
         {% for item in all_prod %}
     		<li>
-    				<a href="/product/{{ item.get_absolut_url }}"><img src="{% if item.get_main_image %}{{ item.get_main_image }}{% else %}{% static "images/no-img.png" %}{% endif %}" style="display:block;margin-top:50px;height:167px;width:262.2px;" alt=""></a>
+    				<a href="/product/{{ item.get_absolut_url }}"><img src="{% if item.get_main_image %}{{ item.get_main_image }}{% else %}{% static "images/no-img.png" %}{% endif %}" style="display:block;margin-top:50px;height:167px;max-width:262.2px;width:100%;" alt=""></a>
     				<div class="special-info grid_1 simpleCart_shelfItem">
     					<h5>{{ item.name }}</h5>
     					<div class="item_add"><span class="item_price"><h6><font color="red">{% if item.discount > 0 %} {{ item.get_discount_price }} <s><font color="black">{{ item.price }}</font></s>
